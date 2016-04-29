@@ -14,6 +14,6 @@
       title:'bookSheet',
       state:'bookSheet',
       roles:['*']
-    })
+    });
   }
 })();
