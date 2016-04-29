@@ -11,8 +11,8 @@
   function menuConfig(Menus) {
     // Config logic
     Menus.addMenuItem('topbar',{//define in core module
-      title:'book',
-      state:'book',
+      title:'bookSheet',
+      state:'bookSheet',
       roles:['*']
     })
   }

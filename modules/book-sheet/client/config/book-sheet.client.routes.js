@@ -11,7 +11,7 @@
   function routeConfig($stateProvider) {
     // Book sheet state routing
     $stateProvider
-      .state('book-sheet', {
+      .state('bookSheet', {
         url: '/booksheet',
         templateUrl: 'modules/book-sheet/client/views/book-sheet.client.view.html',
         controller: 'BooksheetController',
