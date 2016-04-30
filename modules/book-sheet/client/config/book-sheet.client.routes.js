@@ -14,8 +14,11 @@
       .state('bookSheet', {
         url: '/booksheet',
         templateUrl: 'modules/book-sheet/client/views/book-sheet.client.view.html',
-        controller: 'BooksheetController',
+        controller: 'BookSheetController',
         controllerAs: 'vm'
+        //data:{ //for acl only
+        //    roles:['guest']
+        //}
       });
   }
 })();

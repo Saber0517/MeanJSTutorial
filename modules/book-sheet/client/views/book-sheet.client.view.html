@@ -1,71 +1,14 @@
-<section>
-  This is the Book sheet
-  <div class="bs-example" data-example-id="contextual-table">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>Column heading</th>
-        <th>Column heading</th>
-        <th>Column heading</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="active">
-        <th scope="row">1</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr class="success">
-        <th scope="row">3</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr class="info">
-        <th scope="row">5</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr class="warning">
-        <th scope="row">7</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr>
-        <th scope="row">8</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr class="danger">
-        <th scope="row">9</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      </tbody>
-    </table>
+<section data-ng-controller="BookSheetController">
+  <div class="page-header">
+    <h1>BookSheet</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="post in posts" class="list-group-item">
+      <h4 class="list-group-item-heading" ng-bind="post.title"></h4>
+      <p class="list-group-item-text" ng-bind="post.text"></p>
+      <small class="list-group-item-text" ng-bind="post.author.displayName">
+        <span></span>
+      </small>
+    </a>
   </div>
 </section>

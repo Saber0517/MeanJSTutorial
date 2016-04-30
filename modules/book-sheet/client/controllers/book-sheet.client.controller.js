@@ -2,20 +2,22 @@
   'use strict';
 
   angular
-    .module('book-sheet')
-    .controller('BookSheetController', BookSheetController);
-
-  BookSheetController.$inject = ['$scope'];
-
-  function BookSheetController($scope) {
-    var vm = this;
-
-    // Book sheet controller logic
-    // ...
-
-    init();
-
-    function init() {
-    }
-  }
-})();
+      .module('book-sheet')
+      .controller('BookSheetController', ['$scope', function ($scope) {
+        $scope.posts = [{
+          title: 'My first post',
+          text: 'Hello world',
+          author: {
+            displayName: 'MeanUser'
+          }
+        }, {
+          title: 'Another post',
+          text: 'Mean JS is awesome',
+          author: {
+            displayName: 'JsUser'
+          }
+        }
+        ];
+      }
+      ]);
+}());
