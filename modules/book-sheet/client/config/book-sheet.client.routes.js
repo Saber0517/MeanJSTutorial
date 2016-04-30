@@ -3,7 +3,7 @@
 
   //Setting up route
   angular
-    .module('book-sheet')
+    .module('booksheet')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -11,14 +11,21 @@
   function routeConfig($stateProvider) {
     // Book sheet state routing
     $stateProvider
-      .state('bookSheet', {
-        url: '/booksheet',
+      .state('booksheet',{
+        abstract: true,
+        url:'<ui-view/>',
+        data:{
+          roles: ['user','admin']
+        }
+      })
+      .state('bookSheet-create', {
+        url: '/create',
+        templateUrl: 'modules/book-sheet/client/views/book-sheet-create.client.view.html',
+      })
+      .state('bookSheet-list', {
+        url: '',
         templateUrl: 'modules/book-sheet/client/views/book-sheet.client.view.html',
-        controller: 'BookSheetController',
-        controllerAs: 'vm'
-        //data:{ //for acl only
-        //    roles:['guest']
-        //}
+
       });
   }
 })();

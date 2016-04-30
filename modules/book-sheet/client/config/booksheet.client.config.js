@@ -3,7 +3,7 @@
 
   // Book sheet module config
   angular
-    .module('book-sheet')
+    .module('booksheet')
     .run(menuConfig);
 
   menuConfig.$inject = ['Menus'];
@@ -13,7 +13,18 @@
     Menus.addMenuItem('topbar',{//define in core module
       title:'bookSheet',
       state:'bookSheet',
+      type: 'dropdown',
       roles:['*']
+    });
+
+    Menus.addSubMenuItem('topbar', 'bookSheet', {
+      title:'List Post',
+      state:'bookSheet-list'
+    });
+
+    Menus.addSubMenuItem('topbar', 'bookSheet', {
+      title:'Create new post',
+      state:'bookSheet-create'
     });
   }
 })();

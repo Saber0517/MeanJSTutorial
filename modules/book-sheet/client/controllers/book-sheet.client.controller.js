@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-      .module('book-sheet')
+      .module('booksheet')
       .controller('BookSheetController', ['$scope', function ($scope) {
         $scope.posts = [{
           title: 'My first post',
