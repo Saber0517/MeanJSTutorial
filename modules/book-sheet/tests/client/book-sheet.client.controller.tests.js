@@ -42,6 +42,12 @@
       $scope = $rootScope.$new();
       Posts = _Posts_;
 
+      fakePost = new Posts({
+        _id:'012345abcdef',
+        title: 'Sample Post',
+        text: 'Hello World'
+      });
+
       // Point global variables to injected services
       $stateParams = _$stateParams_;
       $httpBackend = _$httpBackend_;
@@ -51,11 +57,73 @@
       BookSheetController = $controller('BookSheetController', {
         $scope: $scope
       });
-    }));
 
-    it('Should do some controller test', inject(function () {
-      // The test logic
-      // ...
+      describe('$scope.find()', function (){
+        var samplePosts;
+
+        beforeEach(function () {
+          samplePosts = [fakePost];
+        });
+
+        it('should return an array with at least one post', inject(function () {
+          $httpBackend.expectGET('/api/posts').respond(samplePosts);
+
+          $scope.find();
+          $httpBackend.flush();
+
+          expect($scope.posts).toEqualData(samplePosts);
+
+
+        }));
+      });
+
+
+      describe('$scope.create()', function (){
+        var samplePostData;
+
+        beforeEach(function () {
+          samplePostData = {
+            title: fakePost.title,
+            text:fakePost.text
+          };
+        });
+
+        $scope.title = fakePost.title;
+        $scope.text = fakePost.text;
+
+        spyOn($location, 'path');
+
+        it('should send a POST request,empty the form field ,and redirect to forum', inject(function () {
+          $httpBackend.expect('/api/posts/', samplePostData).respond(fakePost);
+
+          $scope.create(true);
+
+          $httpBackend.flush();
+
+          expect($scope.title).toBe('');
+          expect($scope.text).toBe('');
+
+          expect($location.path.calls.mostRecent().args[0].toBe(''));
+
+
+        }));
+
+      });
+
+
+      describe('$scope.delete()', function (){
+        it('should send DELETE request and the post array should be empty', inject(function () {
+          $scope.posts = [fakePost];
+          $httpBackend.expectDELETE('api\/posts\/([0-9a-f]{12})$').respond(204);
+
+          $scope.delete(fakePost);
+          $httpBackend.flush();
+
+          expect($scope.posts.length).toBe(0);
+        }));
+      });
+
+
     }));
   });
 }());

@@ -1,9 +1,10 @@
-<section data-ng-controller="BookSheetController">
+<section data-ng-controller="BookSheetController" ng-init="find()">
   <div class="page-header">
     <h1>BookSheet</h1>
   </div>
   <div class="list-group">
     <a ng-repeat="post in posts" class="list-group-item">
+      <button class="pull-right btn btn-danger" ng-click="delete(post)">X</button>
       <h4 class="list-group-item-heading" ng-bind="post.title"></h4>
       <p class="list-group-item-text" ng-bind="post.text"></p>
       <small class="list-group-item-text" ng-bind="post.author.displayName">

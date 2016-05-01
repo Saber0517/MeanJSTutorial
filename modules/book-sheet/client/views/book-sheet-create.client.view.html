@@ -1,16 +1,22 @@
 <section ng-controller="BookSheetController">
    <h3>Create new Post</h3>
-  <form name="postForm" ng-submit="" novalidate>
-    <div class="form-group">
+  <form name="postForm" ng-submit="create(postForm.$valid)" novalidate>
+    <div class="form-group" show-errors>
       <label for="title"></label>
-      <input type="text" id="title" ng-model="title" class="form-control" required placeholder="Post Title">
+      <input type="text" id="title" name="title" ng-model="title" class="form-control" required placeholder="Post Title">
+      <div ng-messages="postForm.title.$error" role="alert">
+        <p ng-message="required" class="help-block error-text" >Post title is required.</p>
+      </div>
     </div>
     <div class="form-group">
       <label for="text"></label>
-      <textarea id="text" ng-model="text" class="form-control" placeholder="Enter Text"></textarea>
+      <textarea id="text" name="text" ng-model="text" class="form-control" placeholder="Enter Text"></textarea>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+    <div ng-show="error" class="text-danger">
+      <span ng-bind="error"></span>
     </div>
   </form>
 </section>

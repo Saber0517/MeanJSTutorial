@@ -1,6 +1,6 @@
 'use strict';
 
-var posts = require('../controllers/book-sheet.server.controller.js');
+var posts = require('../controllers/booksheet.server.controller.js');
 module.exports = function(app) {
   // Routing logic   
   app.route('/api/posts')

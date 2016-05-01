@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('booksheet');
+  app.registerModule('bookSheet');
 })(ApplicationConfiguration);

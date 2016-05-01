@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('booksheet')
-    .factory('bookSheetService', bookSheetService);
+    .module('bookSheet')
+    .factory('BookSheetService', BookSheetService);
 
-  bookSheetService.$inject = ['$resource'/*Example: '$state', '$window' */];
+  BookSheetService.$inject = ['$resource'/*Example: '$state', '$window' */];
 
-  function bookSheetService($resource /*Example: $state, $window */) {
+  function BookSheetService($resource /*Example: $state, $window */) {
     // Booksheetservice service logic
     // ...
 
