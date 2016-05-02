@@ -1,23 +1,34 @@
 (function () {
   'use strict';
+  var bookSheetModule = angular
+    .module('bookSheet');
 
-  angular
-    .module('bookSheet')
-    .factory('BookSheetService', BookSheetService);
+  bookSheetModule.factory('BookSheetService', ['$resource', function ($resource) {
 
-  BookSheetService.$inject = ['$resource'/*Example: '$state', '$window' */];
-
-  function BookSheetService($resource /*Example: $state, $window */) {
-    // Booksheetservice service logic
-    // ...
-
-    // Public API
-    return $resource('/api/posts/:postId',{
-      postId:'@_id'
-    },{
-      update:{
-        method:'PUT'
+    return $resource('/api/posts/:postId', {
+      postId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
       }
     });
-  }
+  }]);
+
+  bookSheetModule.factory('BookSheetStore', ['$resource', function ($resource) {
+    var savedData = {};
+
+    function set(data) {
+      savedData = data;
+    }
+
+    function get() {
+      return savedData;
+    }
+
+    return {
+      set: set,
+      get: get
+    };
+  }]);
+
 })();

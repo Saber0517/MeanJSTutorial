@@ -23,6 +23,10 @@
         url: '/create',
         templateUrl: 'modules/book-sheet/client/views/book-sheet-create.client.view.html',
       })
+      .state('bookSheet.edit', {
+        url: '/edit',
+        templateUrl: 'modules/book-sheet/client/views/book-sheet-edit.client.view.html',
+      })
       .state('bookSheet.list', {
         url: '',
         templateUrl: 'modules/book-sheet/client/views/book-sheet-list.client.view.html',

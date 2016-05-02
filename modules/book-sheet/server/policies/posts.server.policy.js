@@ -17,10 +17,10 @@ exports.invokeRolesPolicies = function() {
     roles:['user'],
     allows:[{
       resources:'/api/posts',
-      permissions:['get','post']
+      permissions:['get','post','put']
     },{
       resources:'/api/posts/:postId',
-      permissions:['get','post']
+      permissions:['get','post','put']
     }]
   }]);
 };
@@ -28,7 +28,7 @@ exports.invokeRolesPolicies = function() {
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
   //handle  delete case
-  if(req.post && req.user && req.post.author.id === req.user.id && req.method.toLowerCase() ==='delete') {
+  if(req.post && req.user && req.post.author.id === req.user.id && (req.method.toLowerCase() ==='delete' || req.method.toLowerCase() ==='update')) {
     return next();
   }
 

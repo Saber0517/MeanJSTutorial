@@ -38,8 +38,29 @@ exports.read = function (req, res) {
 /**
  * Update a Book sheet
  */
-exports.update = function (req, res) {
+exports.update = function (req,res) {
+  //var post = new Post({
+  //  _id:req.body._id,
+  //  author:req.body.author._id,
+  //  title:req.body.title,
+  //  text:req.body.text
+  //});
+  var post = new Post(req.body);
+  console.log(("request post ...:" + post));
+  //post.author = req.user;
 
+  console.log("update....author:\n"+req.user.id);
+  var query = {_id: req.body._id};
+  Post.update(query,{$set:{title:post.title,text:post.text}},{},function (err) {
+    if (err) {
+      console.log(err);
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(post);
+    }
+  });
 };
 
 /**

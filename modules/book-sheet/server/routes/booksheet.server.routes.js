@@ -10,7 +10,8 @@ module.exports = function(app) {
     .post(posts.create);
 
   app.route('/api/posts/:postId').all(postsAccessPolicy.isAllowed)
-    .delete(posts.delete);
+    .delete(posts.delete)
+    .put(posts.update);
 
   app.param('postId', posts.postByID);
 

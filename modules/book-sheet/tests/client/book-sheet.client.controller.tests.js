@@ -110,6 +110,38 @@
 
       });
 
+      describe('$scope.update()', function (){
+        var samplePostData;
+
+        beforeEach(function () {
+          samplePostData = {
+            title: fakePost.title,
+            text:fakePost.text
+          };
+        });
+
+        $scope.title = fakePost.title;
+        $scope.text = fakePost.text;
+
+        spyOn($location, 'path');
+
+        it('should send a PUT request,update the post,and redirect to bookSheet', inject(function () {
+          $httpBackend.expect('/api/posts/', samplePostData).respond(fakePost);
+
+          //$scope.create(true);
+          //
+          //$httpBackend.flush();
+          //
+          //expect($scope.title).toBe('');
+          //expect($scope.text).toBe('');
+          //
+          //expect($location.path.calls.mostRecent().args[0].toBe(''));
+
+
+        }));
+
+      });
+
 
       describe('$scope.delete()', function (){
         it('should send DELETE request and the post array should be empty', inject(function () {

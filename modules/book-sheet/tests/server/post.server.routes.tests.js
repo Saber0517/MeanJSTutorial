@@ -147,6 +147,34 @@ describe('Post CRUD test', function () {
   });
   //Http GET /api/posts/:postID
 
+  //Http UPDATE /api/posts/:postID
+  it('should be able to update a post if logged in', function (done) {
+    var postObj = new Post(post);
+    postObj.author = user;
+    postObj.title = 'Sample update title';
+    postObj.save(function () {
+      agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signInErr, signInRes) {
+          if(signInErr){
+            return done(signInErr);
+          }
+
+          agent.put('/api/posts/' + postObj._id)
+            .expect(200)
+            .end(function (postDeleteErr, postDeleteRes) {
+              if(postDeleteErr){
+                return done(postDeleteErr);
+              }
+              (postDeleteRes.body._id).should.equal(postObj._id.toString());
+
+              done();
+            });
+        });
+    });
+  });
+
   //Http DELETE /api/posts/:postID
   it('should be able to delete a post if logged in', function (done) {
     var postObj = new Post(post);

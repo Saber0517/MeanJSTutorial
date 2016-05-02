@@ -3,11 +3,50 @@
 
   angular
       .module('bookSheet')
-      .controller('BookSheetController', ['$scope','BookSheetService','$location','Authentication', function ($scope,BookSheetService,$location,Authentication) {
+      .controller('BookSheetController', ['$scope','BookSheetService','BookSheetStore','$location','Authentication', function ($scope,BookSheetService,BookSheetStore,$location,Authentication) {
         $scope.user = Authentication.user;
 
         $scope.find = function () {
           $scope.posts = BookSheetService.query();
+        };
+
+        $scope.editPost = function (post) {
+          console.log('test editPost');
+          BookSheetStore.set(post);
+          $location.path('/bookSheet/edit');
+        };
+
+        $scope.editInit = function () {
+          $scope.posts = BookSheetStore.get();
+          $scope.title = $scope.posts.title;
+          $scope.text = $scope.posts.text;
+        };
+
+        $scope.edit = function (isValid) {
+          $scope.error = null;
+
+          if(!isValid){
+            $scope.$broadcast('show-errors-check-validity','postForm');
+            return false;
+          }
+
+          var post = new BookSheetService({
+            _id :$scope.posts._id,
+            author:$scope.posts.author,
+            title: $scope.title,
+            text : $scope.text
+          });
+
+          post.$update(function(response){
+            $scope.title = '';
+            $scope.text = '';
+            $scope.posts = '';
+            BookSheetStore.set('');
+
+            $location.path('/bookSheet');
+          }, function (errorResponse) {
+            $scope.error = errorResponse.data.message;
+          });
         };
 
         $scope.create = function (isValid) {
