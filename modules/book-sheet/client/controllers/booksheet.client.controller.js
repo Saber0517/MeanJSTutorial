@@ -3,7 +3,9 @@
 
   angular
       .module('bookSheet')
-      .controller('BookSheetController', ['$scope','BookSheetService','$location', function ($scope,BookSheetService,$location) {
+      .controller('BookSheetController', ['$scope','BookSheetService','$location','Authentication', function ($scope,BookSheetService,$location,Authentication) {
+        $scope.user = Authentication.user;
+
         $scope.find = function () {
           $scope.posts = BookSheetService.query();
         };
