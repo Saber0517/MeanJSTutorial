@@ -50,8 +50,8 @@ exports.update = function (req,res) {
   //post.author = req.user;
 
   console.log("update....author:\n"+req.user.id);
-  var query = {_id: req.body._id};
-  Post.update(query,{$set:{title:post.title,text:post.text}},{},function (err) {
+  var query = { _id: req.body._id };
+  Post.update(query,{ $set:{ title:post.title,text:post.text } },{},function (err) {
     if (err) {
       console.log(err);
       return res.status(400).send({
